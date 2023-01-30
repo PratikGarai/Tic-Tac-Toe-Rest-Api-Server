@@ -5,11 +5,13 @@ const GAME_STATES = {
   PLAYER_A_WON: "Player A wins",
   PLAYER_B_WON: "Player B wins",
   DRAW: "Draw",
+  GAME_ABORTED: "Game aborted",
 };
 
 const MESSAGES = {
   SUCCESS_GAME_INITIALISED: "Game initialised",
   SUCCESS_GAME_JOINED: "Game joined",
+  SUCCESS_GAME_ABORTED: "Game aborted",
   ERROR_INVALID_USER: "Error! Invalid user",
   ERROR_GAME_STATE_UNINITIALISED: "Error! Game state is uninitialised",
   ERROR_NOT_YOUR_TURN: "Error! It is not your turn",
@@ -20,7 +22,7 @@ const MESSAGES = {
   ERROR_GAME_DOESNOT_EXISTS: "Error! Game does not exist",
 };
 
-const BOARD_SIZE = 5;
+const BOARD_SIZE = 3;
 
 module.exports = {
   GAME_STATES,

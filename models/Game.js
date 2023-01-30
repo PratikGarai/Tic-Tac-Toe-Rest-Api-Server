@@ -161,8 +161,15 @@ class Game {
 
   abortGame() {
     // Abort the game.
-    this.gameState = GAME_STATES.GAME_ABORTED;
-    return this.gameState;
+    if (
+      this.gameState === GAME_STATES.GAME_IN_PROGRESS ||
+      this.gameState === GAME_STATES.UNINITIALISED
+    ) {
+      this.gameState = GAME_STATES.GAME_ABORTED;
+      return this.gameState;
+    } else {
+      throw new Error(MESSAGES.ERROR_GAME_OVER);
+    }
   }
 }
 

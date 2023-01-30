@@ -41,8 +41,19 @@ const checkStatusOfGame = (gameId) => {
   }
 };
 
+const abortGame = (gameId) => {
+  // Abort the game with the given id.
+  const game = STORE.getGame(gameId);
+  game.abortGame();
+  return {
+    gameId: gameId,
+    message: MESSAGES.SUCCESS_GAME_ABORTED,
+  };
+};
+
 module.exports = {
   createGame,
   joinGame,
   checkStatusOfGame,
+  abortGame
 };

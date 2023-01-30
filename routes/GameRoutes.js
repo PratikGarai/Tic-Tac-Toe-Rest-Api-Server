@@ -44,4 +44,11 @@ router.get("/:gameId/status", (req, res) => {
   res.json(GameController.checkStatusOfGame(req.params.gameId));
 });
 
+// @desc    Abort a game`
+// @route   Get /:gameId/abort
+// @access  Public
+router.get("/:gameId/abort", (req, res) => {
+  res.json(GameController.abortGame(req.params.gameId));
+});
+
 module.exports = router;
