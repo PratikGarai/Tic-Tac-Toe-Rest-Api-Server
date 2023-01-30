@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const StoreModel = require("../models/Store");
-const { MESSAGES } = require("../utils/constants");
+const { MESSAGES, GAME_STATES } = require("../utils/constants");
 
 const STORE = new StoreModel();
 
@@ -51,9 +51,30 @@ const abortGame = (gameId) => {
   };
 };
 
+const makeMove = (gameId, playerId, x, y) => {
+  // Make a move in the game with the given id.
+  const game = STORE.getGame(gameId);
+  game.move(playerId, x, y);
+  const state = game.getState();
+  if (state === GAME_STATES.GAME_IN_PROGRESS) {
+    const player = game.getCurrentPlayer();
+    return {
+      gameId: gameId,
+      status: game.getState(),
+      message: `It is ${player}'s turn`,
+    };
+  } else {
+    return {
+      gameId: gameId,
+      status: game.getState(),
+    };
+  }
+};
+
 module.exports = {
   createGame,
   joinGame,
   checkStatusOfGame,
-  abortGame
+  abortGame,
+  makeMove,
 };

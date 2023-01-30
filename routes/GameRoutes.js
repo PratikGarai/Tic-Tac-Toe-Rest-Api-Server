@@ -37,6 +37,30 @@ router.post(
   }
 );
 
+// @desc    Make a move
+// @route   POST /:gameId/move
+// @access  Public
+router.post(
+  "/:gameId/move",
+  schemaValidation(
+    Joi.object().keys({
+      playerId: Joi.string().required(),
+      x: Joi.number().required(),
+      y: Joi.number().required(),
+    })
+  ),
+  (req, res) => {
+    res.json(
+      GameController.makeMove(
+        req.params.gameId,
+        req.body["playerId"],
+        req.body["x"],
+        req.body["y"]
+      )
+    );
+  }
+);
+
 // @desc    Get game status
 // @route   Get /:gameId/status
 // @access  Public

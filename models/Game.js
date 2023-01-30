@@ -82,9 +82,12 @@ class Game {
       this.currentPlayer = this.playerA;
     }
     this.turnCount++;
-
+    this.checkGame();
     // Check if the game is over.
-    if (this.turnCount === BOARD_SIZE * BOARD_SIZE) {
+    if (
+      this.gameState === GAME_STATES.GAME_IN_PROGRESS &&
+      this.turnCount === BOARD_SIZE * BOARD_SIZE
+    ) {
       this.gameState = GAME_STATES.DRAW;
     }
     return this.gameState;
@@ -167,6 +170,14 @@ class Game {
     ) {
       this.gameState = GAME_STATES.GAME_ABORTED;
       return this.gameState;
+    } else {
+      throw new Error(MESSAGES.ERROR_GAME_OVER);
+    }
+  }
+
+  getCurrentPlayer() {
+    if (this.gameState === GAME_STATES.GAME_IN_PROGRESS) {
+      return this.currentPlayer === this.playerA ? "Player A" : "Player B";
     } else {
       throw new Error(MESSAGES.ERROR_GAME_OVER);
     }
