@@ -8,6 +8,7 @@ class Game {
     this.playerB = null;
     this.currentPlayer = null;
     this.board = null;
+    this.turnCount = 0;
   }
 
   initialiseA(playerA) {
@@ -53,6 +54,9 @@ class Game {
     }
 
     // Check if the move is valid.
+    if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) {
+      throw new Error(MESSAGES.ERROR_INVALID_MOVE);
+    }
     if (this.board[row][col] !== "_") {
       throw new Error(MESSAGES.ERROR_INVALID_MOVE);
     }
@@ -62,10 +66,78 @@ class Game {
     else this.board[row][col] = "O";
 
     // Switch the current player.
-    if (this.currentPlayer === this.playerA) this.currentPlayer = this.playerB;
-    else this.currentPlayer = this.playerA;
+    if (this.currentPlayer === this.playerA) {
+      this.currentPlayer = this.playerB;
+    } else {
+      this.currentPlayer = this.playerA;
+    }
+    this.turnCount++;
 
+    // Check if the game is over.
+    if (this.turnCount === BOARD_SIZE * BOARD_SIZE) {
+      this.gameState = GAME_STATES.DRAW;
+    }
     return this.gameState;
+  }
+
+  checkGame() {
+    // Check if the game is over.
+
+    if (this.gameState !== GAME_STATES.GAME_IN_PROGRESS) {
+      // Check if player A won rowise or columnwise.
+      for (let i = 0; i < BOARD_SIZE; i++) {
+        let rowWin = 0;
+        let colWin = 0;
+        for (let j = 0; j < BOARD_SIZE; j++) {
+          if (this.board[i][j] === "X") rowWin++;
+          if (this.board[j][i] === "X") colWin++;
+        }
+        if (rowWin == BOARD_SIZE || colWin == BOARD_SIZE) {
+          this.gameState = GAME_STATES.PLAYER_A_WON;
+          return this.gameState;
+        }
+      }
+
+      // Check if player B won rowwise or columnwise.
+      for (let i = 0; i < BOARD_SIZE; i++) {
+        let rowWin = 0;
+        let colWin = 0;
+        for (let j = 0; j < BOARD_SIZE; j++) {
+          if (this.board[i][j] === "O") rowWin++;
+          if (this.board[j][i] === "O") colWin++;
+        }
+        if (rowWin == BOARD_SIZE || colWin == BOARD_SIZE) {
+          this.gameState = GAME_STATES.PLAYER_B_WON;
+          return this.gameState;
+        }
+      }
+
+      // Check if player A won diagonally.
+      let ldiagWin = 0;
+      let rdiagWin = 0;
+      for (let i = 0; i < BOARD_SIZE; i++) {
+        if (this.board[i][i] === "X") ldiagWin++;
+        if (this.board[i][BOARD_SIZE - 1 - i] === "X") rdiagWin++;
+      }
+      if (ldiagWin == BOARD_SIZE || rdiagWin == BOARD_SIZE) {
+        this.gameState = GAME_STATES.PLAYER_A_WON;
+        return this.gameState;
+      }
+
+      // Check if player B won diagonally.
+      ldiagWin = 0;
+      rdiagWin = 0;
+      for (let i = 0; i < BOARD_SIZE; i++) {
+        if (this.board[i][i] === "O") ldiagWin++;
+        if (this.board[i][BOARD_SIZE - 1 - i] === "O") rdiagWin++;
+      }
+      if (ldiagWin == BOARD_SIZE || rdiagWin == BOARD_SIZE) {
+        this.gameState = GAME_STATES.PLAYER_A_WON;
+        return this.gameState;
+      }
+    } else {
+      return this.gameState;
+    }
   }
 }
 
