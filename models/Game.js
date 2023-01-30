@@ -13,12 +13,18 @@ class Game {
 
   initialiseA(playerA) {
     // Initialise the game with player A.
+    if (this.playerA) {
+      throw new Error(MESSAGES.ERROR_PLAYER_ALREADY_EXISTS);
+    }
     this.playerA = playerA;
   }
 
   initialiseB(playerB) {
     // Initialise the game with player B.
     if (playerB === this.playerA) {
+      throw new Error(MESSAGES.ERROR_PLAYER_ALREADY_EXISTS);
+    }
+    if (this.playerB) {
       throw new Error(MESSAGES.ERROR_PLAYER_ALREADY_EXISTS);
     }
     this.playerB = playerB;
@@ -87,7 +93,7 @@ class Game {
   checkGame() {
     // Check if the game is over.
 
-    if (this.gameState !== GAME_STATES.GAME_IN_PROGRESS) {
+    if (this.gameState === GAME_STATES.GAME_IN_PROGRESS) {
       // Check if player A won rowise or columnwise.
       for (let i = 0; i < BOARD_SIZE; i++) {
         let rowWin = 0;
@@ -151,6 +157,12 @@ class Game {
 
   getBoard() {
     return this.board;
+  }
+
+  abortGame() {
+    // Abort the game.
+    this.gameState = GAME_STATES.GAME_ABORTED;
+    return this.gameState;
   }
 }
 

@@ -15,7 +15,7 @@ const MESSAGES = {
   ERROR_NOT_YOUR_TURN: "Error! It is not your turn",
   ERROR_GAME_OVER: "Error! Game is over",
   ERROR_INVALID_MOVE: "Error! Invalid move",
-  ERROR_PLAYER_ALREADY_EXISTS: "Error! Player A already exists",
+  ERROR_PLAYER_ALREADY_EXISTS: "Error! Player already exists",
   ERROR_GAME_ALREADY_EXISTS: "Error! Game already exists",
   ERROR_GAME_DOESNOT_EXISTS: "Error! Game does not exist",
 };
