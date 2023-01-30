@@ -1,8 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
-const { notFound, errorHandler } = require("./middlewares/errorMiddlewares");
+const { notFound, errorHandler } = require("./middlewares/ErrorMiddlewares");
 const cors = require("cors");
+const gameRoutes = require("./routes/GameRoutes");
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
   res.send("Server API is running");
 });
 
+app.use("/game", gameRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

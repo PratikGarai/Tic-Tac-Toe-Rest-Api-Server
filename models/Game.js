@@ -18,6 +18,9 @@ class Game {
 
   initialiseB(playerB) {
     // Initialise the game with player B.
+    if (playerB === this.playerA) {
+      throw new Error(MESSAGES.ERROR_PLAYER_ALREADY_EXISTS);
+    }
     this.playerB = playerB;
   }
 

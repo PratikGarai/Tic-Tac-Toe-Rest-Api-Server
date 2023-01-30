@@ -14,6 +14,7 @@ const MESSAGES = {
   ERROR_NOT_YOUR_TURN: "Error! It is not your turn",
   ERROR_GAME_OVER: "Error! Game is over",
   ERROR_INVALID_MOVE: "Error! Invalid move",
+  ERROR_PLAYER_ALREADY_EXISTS: "Error! Player A already exists",
 };
 
 const BOARD_SIZE = 5;
