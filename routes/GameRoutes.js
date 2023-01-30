@@ -20,6 +20,23 @@ router.post(
   }
 );
 
+// @desc    Join a game
+// @route   POST /:gameId/join
+// @access  Public
+router.post(
+  "/:gameId/join",
+  schemaValidation(
+    Joi.object().keys({
+      "playerB-Id": Joi.string().required(),
+    })
+  ),
+  (req, res) => {
+    res.json(
+      GameController.joinGame(req.params.gameId, req.body["playerB-Id"])
+    );
+  }
+);
+
 // @desc    Get game status
 // @route   Get /:gameId/status
 // @access  Public

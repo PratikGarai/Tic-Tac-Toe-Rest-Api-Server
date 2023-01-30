@@ -9,6 +9,7 @@ const GAME_STATES = {
 
 const MESSAGES = {
   SUCCESS_GAME_INITIALISED: "Game initialised",
+  SUCCESS_GAME_JOINED: "Game joined",
   ERROR_INVALID_USER: "Error! Invalid user",
   ERROR_GAME_STATE_UNINITIALISED: "Error! Game state is uninitialised",
   ERROR_NOT_YOUR_TURN: "Error! It is not your turn",

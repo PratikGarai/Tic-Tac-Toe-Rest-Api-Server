@@ -22,6 +22,7 @@ class Game {
       throw new Error(MESSAGES.ERROR_PLAYER_ALREADY_EXISTS);
     }
     this.playerB = playerB;
+    this.start();
   }
 
   initialiseBoard() {
@@ -146,6 +147,10 @@ class Game {
   getState() {
     // Get the current state of the game.
     return this.gameState;
+  }
+
+  getBoard() {
+    return this.board;
   }
 }
 
