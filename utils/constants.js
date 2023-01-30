@@ -22,7 +22,7 @@ const MESSAGES = {
   ERROR_GAME_DOESNOT_EXISTS: "Error! Game does not exist",
 };
 
-const BOARD_SIZE = 3;
+const BOARD_SIZE = 5;
 
 module.exports = {
   GAME_STATES,
