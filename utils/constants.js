@@ -15,6 +15,8 @@ const MESSAGES = {
   ERROR_GAME_OVER: "Error! Game is over",
   ERROR_INVALID_MOVE: "Error! Invalid move",
   ERROR_PLAYER_ALREADY_EXISTS: "Error! Player A already exists",
+  ERROR_GAME_ALREADY_EXISTS: "Error! Game already exists",
+  ERROR_GAME_DOESNOT_EXISTS: "Error! Game does not exist",
 };
 
 const BOARD_SIZE = 5;

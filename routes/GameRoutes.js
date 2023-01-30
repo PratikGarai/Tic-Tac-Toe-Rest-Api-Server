@@ -1,7 +1,7 @@
 const express = require("express");
 const Joi = require("joi");
 const schemaValidation = require("../middlewares/SchemaValidation");
-
+const GameController = require("../controllers/GameController");
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.post(
     })
   ),
   (req, res) => {
-    res.send("Create a new game");
+    res.json(GameController.createGame(req.body["playerA-Id"]));
   }
 );
 
