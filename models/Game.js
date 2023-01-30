@@ -139,6 +139,11 @@ class Game {
       return this.gameState;
     }
   }
+
+  getState() {
+    // Get the current state of the game.
+    return this.gameState;
+  }
 }
 
 module.exports = Game;
