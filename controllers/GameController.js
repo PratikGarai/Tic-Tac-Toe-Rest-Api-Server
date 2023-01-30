@@ -14,6 +14,15 @@ const createGame = (playerAId) => {
   };
 };
 
+const checkStatusOfGame = (gameId) => {
+  // Check the status of the game.
+  const game = STORE.getGame(gameId);
+  return {
+    gameState: game.getState(),
+  };
+};
+
 module.exports = {
   createGame,
+  checkStatusOfGame,
 };

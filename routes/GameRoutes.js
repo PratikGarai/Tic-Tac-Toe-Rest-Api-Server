@@ -20,4 +20,11 @@ router.post(
   }
 );
 
+// @desc    Get game status
+// @route   Get /:gameId/status
+// @access  Public
+router.get("/:gameId/status", (req, res) => {
+  res.json(GameController.checkStatusOfGame(req.params.gameId));
+});
+
 module.exports = router;
