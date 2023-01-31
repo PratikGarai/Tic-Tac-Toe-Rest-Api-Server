@@ -9,6 +9,7 @@ class Game {
     this.currentPlayer = null;
     this.board = null;
     this.turnCount = 0;
+    this.buffer = [];
   }
 
   initialiseA(playerA) {
@@ -72,8 +73,19 @@ class Game {
     }
 
     // Make the move.
-    if (player === this.playerA) this.board[row][col] = "X";
-    else this.board[row][col] = "O";
+    if (player === this.playerA) {
+      this.board[row][col] = "X";
+      this.buffer.push({
+        player: this.playerA,
+        pos: [row, col],
+      });
+    } else {
+      this.board[row][col] = "O";
+      this.buffer.push({
+        player: this.playerB,
+        pos: [row, col],
+      });
+    }
 
     // Switch the current player.
     if (this.currentPlayer === this.playerA) {
@@ -181,6 +193,20 @@ class Game {
     } else {
       throw new Error(MESSAGES.ERROR_GAME_OVER);
     }
+  }
+
+  undo() {
+    if (this.gameState !== GAME_STATES.GAME_IN_PROGRESS) {
+      throw new Error(MESSAGES.ERROR_GAME_NOT_IN_PROGRESS);
+    }
+    if (this.buffer.length === 0) {
+      throw new Error(MESSAGES.ERROR_NO_UNDO);
+    }
+
+    const lastMove = this.buffer[this.buffer.length - 1];
+    this.board[lastMove.pos[0]][lastMove.pos[1]] = "_";
+    this.currentPlayer = lastMove.player;
+    this.buffer = this.buffer.slice(0, this.buffer.length - 1);
   }
 }
 

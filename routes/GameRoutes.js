@@ -75,4 +75,11 @@ router.get("/:gameId/abort", (req, res) => {
   res.json(GameController.abortGame(req.params.gameId));
 });
 
+// @desc    Undo the last move in game
+// @route   Get /:gameId/undo
+// @access  Public
+router.get("/:gameId/undo", (req, res) => {
+  res.json(GameController.undoMove(req.params.gameId));
+});
+
 module.exports = router;

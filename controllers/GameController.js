@@ -71,10 +71,19 @@ const makeMove = (gameId, playerId, x, y) => {
   }
 };
 
+const undoMove = (gameId) => {
+  const game = STORE.getGame(gameId);
+  game.undo()
+  return {
+    message : "Ok"
+  }
+} 
+
 module.exports = {
   createGame,
   joinGame,
   checkStatusOfGame,
   abortGame,
   makeMove,
+  undoMove
 };
