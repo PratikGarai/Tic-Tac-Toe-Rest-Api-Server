@@ -20,6 +20,8 @@ const MESSAGES = {
   ERROR_PLAYER_ALREADY_EXISTS: "Error! Player already exists",
   ERROR_GAME_ALREADY_EXISTS: "Error! Game already exists",
   ERROR_GAME_DOESNOT_EXISTS: "Error! Game does not exist",
+  ERROR_GAME_NOT_IN_PROGRESS: "Error! Game is not in progress",
+  ERROR_NO_UNDO : "Error! No moves to undo"
 };
 
 const BOARD_SIZE = 5;
