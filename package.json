@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/PratikGarai/tic-tac-toe-shortloop#readme",
   "dependencies": {
-    "colors": "^1.4.0",
+    "colors": "1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
